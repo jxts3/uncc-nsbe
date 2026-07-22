@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dues — UNCC NSBE</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .dues-section {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .dues-section h2 {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      color: var(--green);
+      margin-bottom: 0.4rem;
+    }
+
+    .dues-section .divider {
+      width: 40px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin-bottom: 1.25rem;
+    }
+
+    .step {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 1.25rem;
+    }
+
+    .step-number {
+      background-color: var(--green);
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .step-content h4 {
+      font-weight: 600;
+      font-size: 0.97rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .step-content p {
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+
+    .payment-methods {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .payment-box {
+      border: 2px solid var(--light-gray);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    .payment-box h4 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .payment-box .handle {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--green);
+      margin: 0.4rem 0;
+    }
+
+    .payment-box p {
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-bottom: 0.75rem;
+    }
+
+    .payment-box img {
+      width: 160px;
+      height: 160px;
+      object-fit: contain;
+      margin: 0.75rem auto 0;
+      border-radius: 8px;
+    }
+
+    .qr-placeholder {
+      width: 160px;
+      height: 160px;
+      background: var(--off-white);
+      border: 2px dashed var(--light-gray);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: var(--gray);
+      margin: 0.75rem auto 0;
+      text-align: center;
+      padding: 0.5rem;
+    }
+
+    .amount-badge {
+      display: inline-block;
+      background: var(--off-white);
+      border: 1.5px solid var(--green);
+      color: var(--green);
+      font-weight: 700;
+      font-size: 1.5rem;
+      padding: 0.5rem 1.5rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+    }
+
+    .info-box {
+      background: var(--off-white);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 1rem 1.25rem;
+      margin-top: 1.25rem;
+      font-size: 0.9rem;
+      color: var(--dark);
+    }
+
+    @media (max-width: 500px) {
+      .payment-methods { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="index.html" class="nav-logo">UNCC <span>NSBE</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="eboard.html">E-Board</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="dues.html" class="active">Dues</a></li>
+      <li><a href="sponsorship.html">Sponsorship</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <h1>Pay Your Dues</h1>
+    <p>Stay in good standing — pay local and national dues each year</p>
+  </div>
+
+  <div class="container">
+
+    <!-- LOCAL DUES -->
+    <div class="dues-section">
+      <h2>Local UNCC Dues</h2>
+      <div class="divider"></div>
+
+      <p style="color: var(--gray); margin-bottom: 1.25rem;">
+        Local dues go directly to supporting chapter events, resources, and programming here at UNC Charlotte.
+      </p>
+
+      <div class="amount-badge">$25 / year</div>
+
+      <p style="font-weight: 600; margin: 1rem 0 0.5rem;">How to pay — scan a QR code or use the handle below:</p>
+
+      <div class="payment-methods">
+
+        <div class="payment-box">
+          <h4>💸 CashApp</h4>
+          <p class="handle">$NSBEUNCC</p>
+          <p>Send $25 and include your full name in the memo</p>
+          <!--
+            QR CODE INSTRUCTIONS:
+            1. Save the CashApp QR code from the PDF as "cashapp-qr.png" in your images/ folder
+            2. Remove the div below and uncomment the img tag
+          -->
+          <!-- <img src="images/cashapp-qr.png" alt="CashApp QR Code"> -->
+          <div class="qr-placeholder">Add CashApp QR code here<br>(save as images/cashapp-qr.png)</div>
+        </div>
+
+        <div class="payment-box">
+          <h4>🅿️ PayPal</h4>
+          <p class="handle">National Society of Black Engineers at UNCC</p>
+          <p>Send $25 and include your full name in the memo</p>
+          <!--
+            QR CODE INSTRUCTIONS:
+            1. Save the PayPal QR code from the PDF as "paypal-qr.png" in your images/ folder
+            2. Remove the div below and uncomment the img tag
+          -->
+          <!-- <img src="images/paypal-qr.png" alt="PayPal QR Code"> -->
+          <div class="qr-placeholder">Add PayPal QR code here<br>(save as images/paypal-qr.png)</div>
+        </div>
+
+      </div>
+
+      <div class="info-box">
+        ⚠️ <strong>Important:</strong> Always include your full name in the payment memo so we can confirm your payment. Example: <em>John Smith — NSBE Dues 2025</em>
+      </div>
+    </div>
+
+    <!-- NATIONAL DUES -->
+    <div class="dues-section">
+      <h2>National NSBE Dues</h2>
+      <div class="divider"></div>
+
+      <p style="color: var(--gray); margin-bottom: 1.25rem;">
+        National dues are paid directly to the national NSBE organization and give you access to the national NSBE network, the annual convention, scholarships, and more.
+      </p>
+
+      <p style="font-weight: 600; margin: 1rem 0 0.75rem;">Step-by-step instructions:</p>
+
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h4>Create an NSBE Account</h4>
+          <p>Go to <a href="https://www.nsbe.org" target="_blank">nsbe.org</a> and create a free account using your student email address.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h4>Search for UNCC Chapter</h4>
+          <p>Once logged in, search for the UNC Charlotte chapter and select it as your home chapter.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h4>Pay National Dues</h4>
+          <p>Navigate to the membership/dues section and pay the annual fee by credit or debit card directly on the NSBE website.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h4>Confirm with E-Board</h4>
+          <p>Send a screenshot of your payment confirmation to an e-board member or DM us on Instagram <a href="https://www.instagram.com/UNCC_NSBE" target="_blank">@UNCC_NSBE</a> so we can verify your membership.</p>
+        </div>
+      </div>
+
+      <div class="info-box">
+        📌 National dues are separate from local dues. You need to pay <strong>both</strong> to be a full member in good standing. Questions? Email us at <a href="mailto:unccnsbe.pres@gmail.com">unccnsbe.pres@gmail.com</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p><strong>UNCC NSBE</strong> — UNC Charlotte Chapter</p>
+    <p class="mt-1">
+      <a href="https://www.instagram.com/UNCC_NSBE" target="_blank">@UNCC_NSBE</a>
+      &nbsp;|&nbsp;
+      <a href="contact.html">Contact Us</a>
+    </p>
+    <p class="mt-1" style="font-size: 0.8rem; opacity: 0.6;">© 2025–2026 UNCC NSBE. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const links  = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+  </script>
+
+</body>
+</html>
