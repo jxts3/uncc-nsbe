@@ -835,6 +835,20 @@ nav.footer-nav {
 
 a:hover > .arrow { transform: translateX(4px); }
 
+/* --- Safety caps ---
+   Hard ceilings only: these stop an icon or hero image from ever rendering
+   oversized, without enlarging the 16-24px icons sized elsewhere. */
+svg, .card-icon, .feature-icon, .mission-card svg, .explore-card svg {
+  max-width: 48px !important;
+  max-height: 48px !important;
+}
+
+.hero-logo, .hero-watermark, .hero img {
+  max-width: 120px !important;
+  height: auto !important;
+  object-fit: contain;
+}
+
 /* --- Utility --- */
 .text-center { text-align: center; }
 .mt-1 { margin-top: 0.5rem; }
