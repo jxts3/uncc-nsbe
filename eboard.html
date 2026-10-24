@@ -5,117 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>E-Board — UNCC NSBE</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    .eboard-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2.5rem;
-      max-width: 860px;
-      margin: 0 auto;
-    }
-
-    .member-row {
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: 2rem;
-      align-items: center;
-      background: var(--white);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    /* Alternate layout: even rows flip photo to right */
-    .member-row.flip {
-      grid-template-columns: 1fr 220px;
-    }
-
-    .member-row.flip .member-photo-wrap {
-      order: 2;
-    }
-
-    .member-row.flip .member-text {
-      order: 1;
-      padding-left: 2rem;
-      padding-right: 0;
-    }
-
-    .member-photo-wrap {
-      height: 240px;
-      background: linear-gradient(135deg, #0a3d20, #046A38);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .member-photo-wrap img {
-      width: 100%;
-      height: 240px;
-      object-fit: cover;
-    }
-
-    .member-photo-placeholder {
-      font-size: 4rem;
-      opacity: 0.4;
-    }
-
-    .member-text {
-      padding: 1.75rem 2rem 1.75rem 0;
-    }
-
-    .member-title {
-      font-family: var(--font-heading);
-      font-size: 0.78rem;
-      color: var(--gold);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 0.4rem;
-    }
-
-    .member-name {
-      font-family: var(--font-heading);
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--dark);
-      margin-bottom: 0.3rem;
-      letter-spacing: -0.3px;
-    }
-
-    .member-grad {
-      font-size: 0.875rem;
-      color: var(--gray);
-      font-family: var(--font-body);
-    }
-
-    .member-divider {
-      width: 36px;
-      height: 2px;
-      background: var(--green);
-      border-radius: 2px;
-      margin: 0.85rem 0;
-    }
-
-    @media (max-width: 640px) {
-      .member-row,
-      .member-row.flip {
-        grid-template-columns: 1fr;
-      }
-
-      .member-row.flip .member-photo-wrap { order: 0; }
-      .member-row.flip .member-text { order: 1; padding-left: 0; }
-
-      .member-photo-wrap { height: 200px; }
-      .member-text { padding: 1.25rem; }
-    }
-  </style>
 </head>
 <body>
 
   <!-- NAVBAR -->
   <nav>
-    <a href="index.html" class="nav-logo">UNCC <span>NSBE</span></a>
+    <a href="index.html" class="nav-brand" aria-label="UNCC NSBE home">
+      <img src="images/nsbe-logo.png" alt="NSBE logo">
+      <span class="nav-divider" aria-hidden="true"></span>
+      <img src="images/uncc-logo.png" alt="UNC Charlotte logo">
+      <span class="nav-title">UNCC NSBE</span>
+    </a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
@@ -130,189 +30,394 @@
   </nav>
 
   <!-- PAGE HEADER -->
-  <div class="page-header">
+  <div class="page-header fade-in">
     <h1>Executive Board</h1>
-    <p>Meet the 2025–2026 UNCC NSBE leadership team</p>
+    <p>The students leading UNCC NSBE in 2025–2026</p>
   </div>
 
-  <div class="container">
+  <div class="container fade-in">
     <h2 class="section-title">Our Leaders</h2>
     <div class="section-divider"></div>
 
-    <!--
-      HOW TO ADD A PHOTO:
-      1. Save the photo in images/ folder e.g. images/kanye.jpg
-      2. Replace <div class="member-photo-placeholder">👤</div> with:
-         <img src="images/kanye.jpg" alt="Kanye Mckeithen">
-    -->
+    <!-- Photos live in images/ (filename = first-last). A missing photo falls back to initials. -->
+    <p class="eboard-hint">Hover over a card (or tap on mobile) to learn more about each member.</p>
 
-    <div class="eboard-list">
+    <div class="eboard-grid">
 
-      <div class="member-row reveal from-left">
-        <div class="member-photo-wrap">
-          <div class="member-photo-placeholder">👤</div>
-        </div>
-        <div class="member-text">
-          <p class="member-title">President</p>
-          <p class="member-name">Kanye Mckeithen</p>
-          <div class="member-divider"></div>
-          <p class="member-grad">Graduating May 2027</p>
+      <div class="eboard-card-container reveal">
+        <div class="eboard-card-inner">
+
+          <div class="eboard-card-front">
+            <div class="eboard-photo" data-initials="KM">
+              <img src="images/kanye-mckeithen.jpg" alt="Kanye McKeithen" class="eboard-img" loading="lazy" onerror="this.onerror=null; this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+            </div>
+            <div class="eboard-info">
+              <span class="position-badge">PRESIDENT</span>
+              <h3 class="eboard-name">Kanye McKeithen</h3>
+            </div>
+          </div>
+
+          <div class="eboard-card-back">
+            <div>
+              <span class="position-badge">PRESIDENT</span>
+              <h3 class="eboard-name">Kanye McKeithen</h3>
+              <dl class="eboard-details">
+                <dt>Year</dt><dd>Senior</dd>
+                <dt>Major</dt><dd>Mechanical Engineering</dd>
+              </dl>
+              <p class="eboard-fun-fact"><strong>Fun fact:</strong> Spent this past summer in Houston.</p>
+            </div>
+            <a href="https://www.linkedin.com/in/kanyem/" target="_blank" rel="noopener noreferrer" class="btn btn-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg> Connect on LinkedIn</a>
+          </div>
+
         </div>
       </div>
 
-      <div class="member-row flip reveal from-right">
-        <div class="member-photo-wrap">
-          <div class="member-photo-placeholder">👤</div>
-        </div>
-        <div class="member-text">
-          <p class="member-title">Vice President</p>
-          <p class="member-name">Rupert Lartey</p>
-          <div class="member-divider"></div>
-          <p class="member-grad">Graduating May 2028</p>
+      <div class="eboard-card-container reveal">
+        <div class="eboard-card-inner">
+
+          <div class="eboard-card-front">
+            <div class="eboard-photo" data-initials="RL">
+              <img src="images/rupert-lartey.jpg" alt="Rupert Lartey" class="eboard-img" loading="lazy" onerror="this.onerror=null; this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+            </div>
+            <div class="eboard-info">
+              <span class="position-badge">VICE PRESIDENT</span>
+              <h3 class="eboard-name">Rupert Lartey</h3>
+            </div>
+          </div>
+
+          <div class="eboard-card-back">
+            <div>
+              <span class="position-badge">VICE PRESIDENT</span>
+              <h3 class="eboard-name">Rupert Lartey</h3>
+              <dl class="eboard-details">
+                <dt>Year</dt><dd>Junior</dd>
+                <dt>Major</dt><dd>Mechanical Engineering w/ Concentration in Energy</dd>
+              </dl>
+              <p class="eboard-fun-fact"><strong>Fun fact:</strong> Lived in San Diego this summer.</p>
+            </div>
+            <a href="https://www.linkedin.com/in/rupert-lartey/" target="_blank" rel="noopener noreferrer" class="btn btn-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg> Connect on LinkedIn</a>
+          </div>
+
         </div>
       </div>
 
-      <div class="member-row reveal from-left">
-        <div class="member-photo-wrap">
-          <div class="member-photo-placeholder">👤</div>
-        </div>
-        <div class="member-text">
-          <p class="member-title">Treasurer</p>
-          <p class="member-name">Olivia Parker-George</p>
-          <div class="member-divider"></div>
-          <p class="member-grad">Graduating May 2028</p>
+      <div class="eboard-card-container reveal">
+        <div class="eboard-card-inner">
+
+          <div class="eboard-card-front">
+            <div class="eboard-photo" data-initials="OP">
+              <img src="images/olivia-parker-george.jpeg" alt="Olivia Parker-George" class="eboard-img img-focus-upper" loading="lazy" onerror="this.onerror=null; this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+            </div>
+            <div class="eboard-info">
+              <span class="position-badge">TREASURER</span>
+              <h3 class="eboard-name">Olivia Parker-George</h3>
+            </div>
+          </div>
+
+          <div class="eboard-card-back">
+            <div>
+              <span class="position-badge">TREASURER</span>
+              <h3 class="eboard-name">Olivia Parker-George</h3>
+              <dl class="eboard-details">
+                <dt>Year</dt><dd>Junior</dd>
+                <dt>Major</dt><dd>Computer Science w/ Concentration in Bioinformatics</dd>
+              </dl>
+              <p class="eboard-fun-fact"><strong>Fun fact:</strong> I love going to concerts :)</p>
+            </div>
+            <a href="https://www.linkedin.com/in/olivia-parker-george/" target="_blank" rel="noopener noreferrer" class="btn btn-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg> Connect on LinkedIn</a>
+          </div>
+
         </div>
       </div>
 
-      <div class="member-row flip reveal from-right">
-        <div class="member-photo-wrap">
-          <div class="member-photo-placeholder">👤</div>
-        </div>
-        <div class="member-text">
-          <p class="member-title">Secretary</p>
-          <p class="member-name">Jesse Igbide</p>
-          <div class="member-divider"></div>
-          <p class="member-grad">Graduating May 2027</p>
+      <div class="eboard-card-container reveal">
+        <div class="eboard-card-inner">
+
+          <div class="eboard-card-front">
+            <div class="eboard-photo" data-initials="JI">
+              <img src="images/jesse-igbide.jpg" alt="Jesse Igbide" class="eboard-img" loading="lazy" onerror="this.onerror=null; this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+            </div>
+            <div class="eboard-info">
+              <span class="position-badge">SECRETARY</span>
+              <h3 class="eboard-name">Jesse Igbide</h3>
+            </div>
+          </div>
+
+          <div class="eboard-card-back">
+            <div>
+              <span class="position-badge">SECRETARY</span>
+              <h3 class="eboard-name">Jesse Igbide</h3>
+              <dl class="eboard-details">
+                <dt>Year</dt><dd>Senior</dd>
+                <dt>Major</dt><dd>Computer Science w/ Concentration in Data Science</dd>
+              </dl>
+              <p class="eboard-fun-fact"><strong>Fun fact:</strong> I watch sports in my free time.</p>
+            </div>
+            <a href="https://www.linkedin.com/in/jigbide/" target="_blank" rel="noopener noreferrer" class="btn btn-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg> Connect on LinkedIn</a>
+          </div>
+
         </div>
       </div>
 
-      <div class="member-row reveal from-left">
-        <div class="member-photo-wrap">
-          <div class="member-photo-placeholder">👤</div>
-        </div>
-        <div class="member-text">
-          <p class="member-title">Membership Chair</p>
-          <p class="member-name">Jackson Hanish</p>
-          <div class="member-divider"></div>
-          <p class="member-grad">Graduating May 2028</p>
+      <div class="eboard-card-container reveal">
+        <div class="eboard-card-inner">
+
+          <div class="eboard-card-front">
+            <div class="eboard-photo" data-initials="JH">
+              <img src="images/jackson-hanish.jpg" alt="Jackson D. Hanish" class="eboard-img" loading="lazy" onerror="this.onerror=null; this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+            </div>
+            <div class="eboard-info">
+              <span class="position-badge">MEMBERSHIP CHAIR</span>
+              <h3 class="eboard-name">Jackson D. Hanish</h3>
+            </div>
+          </div>
+
+          <div class="eboard-card-back">
+            <div>
+              <span class="position-badge">MEMBERSHIP CHAIR</span>
+              <h3 class="eboard-name">Jackson D. Hanish</h3>
+              <dl class="eboard-details">
+                <dt>Year</dt><dd>Junior</dd>
+                <dt>Major</dt><dd>Mechanical Engineering w/ Concentration in Biomed</dd>
+              </dl>
+              <p class="eboard-fun-fact"><strong>Fun fact:</strong> I held an eyeball during my summer internship.</p>
+            </div>
+            <a href="https://www.linkedin.com/in/jacksonhanish/" target="_blank" rel="noopener noreferrer" class="btn btn-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg> Connect on LinkedIn</a>
+          </div>
+
         </div>
       </div>
 
-      <div class="member-row flip reveal from-right">
-        <div class="member-photo-wrap">
-          <div class="member-photo-placeholder">👤</div>
-        </div>
-        <div class="member-text">
-          <p class="member-title">Publications Chair</p>
-          <p class="member-name">Ambre Abner</p>
-          <div class="member-divider"></div>
-          <p class="member-grad">Graduating May 2028</p>
+      <div class="eboard-card-container reveal">
+        <div class="eboard-card-inner">
+
+          <div class="eboard-card-front">
+            <div class="eboard-photo" data-initials="DO">
+              <img src="images/daniel-odei.jpeg" alt="Daniel Odei" class="eboard-img" loading="lazy" onerror="this.onerror=null; this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+            </div>
+            <div class="eboard-info">
+              <span class="position-badge">FINANCE CHAIR</span>
+              <h3 class="eboard-name">Daniel Odei</h3>
+            </div>
+          </div>
+
+          <div class="eboard-card-back">
+            <div>
+              <span class="position-badge">FINANCE CHAIR</span>
+              <h3 class="eboard-name">Daniel Odei</h3>
+              <dl class="eboard-details">
+                <dt>Year</dt><dd>Senior</dd>
+                <dt>Major</dt><dd>Computer Science</dd>
+              </dl>
+              <p class="eboard-fun-fact"><strong>Fun fact:</strong> I used to live in NH</p>
+            </div>
+            <a href="https://www.linkedin.com/in/daniel-odei-446387292/" target="_blank" rel="noopener noreferrer" class="btn btn-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg> Connect on LinkedIn</a>
+          </div>
+
         </div>
       </div>
 
-      <div class="member-row reveal from-left">
-        <div class="member-photo-wrap">
-          <div class="member-photo-placeholder">👤</div>
-        </div>
-        <div class="member-text">
-          <p class="member-title">Finance Chair</p>
-          <p class="member-name">Daniel Odei</p>
-          <div class="member-divider"></div>
-          <p class="member-grad">Graduating Spring 2027</p>
+      <div class="eboard-card-container reveal">
+        <div class="eboard-card-inner">
+
+          <div class="eboard-card-front">
+            <div class="eboard-photo" data-initials="RB">
+              <img src="images/rapheal-badawi.jpeg" alt="Rapheal Badawi" class="eboard-img img-focus-lower" loading="lazy" onerror="this.onerror=null; this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+            </div>
+            <div class="eboard-info">
+              <span class="position-badge">TORCH CHAIR</span>
+              <h3 class="eboard-name">Rapheal Badawi</h3>
+            </div>
+          </div>
+
+          <div class="eboard-card-back">
+            <div>
+              <span class="position-badge">TORCH CHAIR</span>
+              <h3 class="eboard-name">Rapheal Badawi</h3>
+              <dl class="eboard-details">
+                <dt>Year</dt><dd>Junior</dd>
+                <dt>Major</dt><dd>Mechanical Engineering w/ Concentration in Aerospace</dd>
+              </dl>
+              <p class="eboard-fun-fact"><strong>Fun fact:</strong> I grew up in Egypt</p>
+            </div>
+            <a href="https://www.linkedin.com/in/raphael-badawi-686118311/" target="_blank" rel="noopener noreferrer" class="btn btn-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg> Connect on LinkedIn</a>
+          </div>
+
         </div>
       </div>
 
-      <div class="member-row flip reveal from-right">
-        <div class="member-photo-wrap">
-          <div class="member-photo-placeholder">👤</div>
-        </div>
-        <div class="member-text">
-          <p class="member-title">TORCH Chair</p>
-          <p class="member-name">Rapheal Badawi</p>
-          <div class="member-divider"></div>
-          <p class="member-grad">Graduating Summer 2028</p>
+      <div class="eboard-card-container reveal">
+        <div class="eboard-card-inner">
+
+          <div class="eboard-card-front">
+            <div class="eboard-photo" data-initials="AB">
+              <img src="images/aaron-battle.JPG" alt="Aaron Battle" class="eboard-img img-focus-lower" loading="lazy" onerror="this.onerror=null; this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+            </div>
+            <div class="eboard-info">
+              <span class="position-badge">SENATOR</span>
+              <h3 class="eboard-name">Aaron Battle</h3>
+            </div>
+          </div>
+
+          <div class="eboard-card-back">
+            <div>
+              <span class="position-badge">SENATOR</span>
+              <h3 class="eboard-name">Aaron Battle</h3>
+              <dl class="eboard-details">
+                <dt>Year</dt><dd>Senior</dd>
+                <dt>Major</dt><dd>Electrical Engineering</dd>
+              </dl>
+              <p class="eboard-fun-fact"><strong>Fun fact:</strong> Can do a backflip</p>
+            </div>
+            <a href="https://www.linkedin.com/in/abattl12/" target="_blank" rel="noopener noreferrer" class="btn btn-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg> Connect on LinkedIn</a>
+          </div>
+
         </div>
       </div>
 
-      <div class="member-row reveal from-left">
-        <div class="member-photo-wrap">
-          <div class="member-photo-placeholder">👤</div>
-        </div>
-        <div class="member-text">
-          <p class="member-title">Senator</p>
-          <p class="member-name">Aaron Battle</p>
-          <div class="member-divider"></div>
-          <p class="member-grad">Graduating May 2027</p>
+      <div class="eboard-card-container reveal">
+        <div class="eboard-card-inner">
+
+          <div class="eboard-card-front">
+            <div class="eboard-photo" data-initials="MF">
+              <img src="images/micah-finnell.jpg" alt="Micah Finnell" class="eboard-img" loading="lazy" onerror="this.onerror=null; this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+            </div>
+            <div class="eboard-info">
+              <span class="position-badge">SENATOR</span>
+              <h3 class="eboard-name">Micah Finnell</h3>
+            </div>
+          </div>
+
+          <div class="eboard-card-back">
+            <div>
+              <span class="position-badge">SENATOR</span>
+              <h3 class="eboard-name">Micah Finnell</h3>
+              <dl class="eboard-details">
+                <dt>Year</dt><dd>Sophomore</dd>
+                <dt>Major</dt><dd>Civil Engineering</dd>
+              </dl>
+              <p class="eboard-fun-fact"><strong>Fun fact:</strong> I love hooping</p>
+            </div>
+            <a href="https://www.linkedin.com/in/mfinnell0909/" target="_blank" rel="noopener noreferrer" class="btn btn-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg> Connect on LinkedIn</a>
+          </div>
+
         </div>
       </div>
 
-      <div class="member-row flip reveal from-right">
-        <div class="member-photo-wrap">
-          <div class="member-photo-placeholder">👤</div>
-        </div>
-        <div class="member-text">
-          <p class="member-title">Senator</p>
-          <p class="member-name">Micah Finnell</p>
-          <div class="member-divider"></div>
-          <p class="member-grad">Graduating May 2029</p>
+      <div class="eboard-card-container reveal">
+        <div class="eboard-card-inner">
+
+          <div class="eboard-card-front">
+            <div class="eboard-photo" data-initials="AD">
+              <img src="images/abdul-rahman-dauda.jpg" alt="Abdul-Rahman Dauda" class="eboard-img" loading="lazy" onerror="this.onerror=null; this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+            </div>
+            <div class="eboard-info">
+              <span class="position-badge">PROGRAMS CHAIR</span>
+              <h3 class="eboard-name">Abdul-Rahman Dauda</h3>
+            </div>
+          </div>
+
+          <div class="eboard-card-back">
+            <div>
+              <span class="position-badge">PROGRAMS CHAIR</span>
+              <h3 class="eboard-name">Abdul-Rahman Dauda</h3>
+              <dl class="eboard-details">
+                <dt>Year</dt><dd>Senior</dd>
+                <dt>Major</dt><dd>Computer Science w/ Concentration in Data Science (Minor: Psychology)</dd>
+              </dl>
+              <p class="eboard-fun-fact"><strong>Fun fact:</strong> I love listening to podcasts.</p>
+            </div>
+            <a href="https://www.linkedin.com/in/abdul--dauda01/" target="_blank" rel="noopener noreferrer" class="btn btn-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg> Connect on LinkedIn</a>
+          </div>
+
         </div>
       </div>
 
-      <div class="member-row reveal from-left">
-        <div class="member-photo-wrap">
-          <div class="member-photo-placeholder">👤</div>
-        </div>
-        <div class="member-text">
-          <p class="member-title">Programs Chair</p>
-          <p class="member-name">Abdul-Rahman Dauda</p>
-          <div class="member-divider"></div>
-          <p class="member-grad">Graduating May 2027</p>
+      <div class="eboard-card-container reveal">
+        <div class="eboard-card-inner">
+
+          <div class="eboard-card-front">
+            <div class="eboard-photo" data-initials="AG">
+              <img src="images/alana-goodman.jpg" alt="Alana Goodman" class="eboard-img img-focus-upper" loading="lazy" onerror="this.onerror=null; this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+            </div>
+            <div class="eboard-info">
+              <span class="position-badge">MEDIA COORDINATOR</span>
+              <h3 class="eboard-name">Alana Goodman</h3>
+            </div>
+          </div>
+
+          <div class="eboard-card-back">
+            <div>
+              <span class="position-badge">MEDIA COORDINATOR</span>
+              <h3 class="eboard-name">Alana Goodman</h3>
+              <dl class="eboard-details">
+                <dt>Year</dt><dd>Junior</dd>
+                <dt>Major</dt><dd>Civil Engineering (Minors: Spanish &amp; Mathematics)</dd>
+              </dl>
+              <p class="eboard-fun-fact"><strong>Fun fact:</strong> My favorite color is brown.</p>
+            </div>
+            <a href="https://www.linkedin.com/in/alana-goodman-35a9473b3/" target="_blank" rel="noopener noreferrer" class="btn btn-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg> Connect on LinkedIn</a>
+          </div>
+
         </div>
       </div>
 
-      <div class="member-row flip reveal from-right">
-        <div class="member-photo-wrap">
-          <div class="member-photo-placeholder">👤</div>
-        </div>
-        <div class="member-text">
-          <p class="member-title">Media Coordinator</p>
-          <p class="member-name">Alana Goodman</p>
-          <div class="member-divider"></div>
-          <p class="member-grad">Graduating May 2028</p>
+      <div class="eboard-card-container reveal">
+        <div class="eboard-card-inner">
+
+          <div class="eboard-card-front">
+            <div class="eboard-photo" data-initials="PW">
+              <img src="images/phillip-watkins.png" alt="Phillip Watkins" class="eboard-img" loading="lazy" onerror="this.onerror=null; this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+            </div>
+            <div class="eboard-info">
+              <span class="position-badge">CORPORATE RELATIONS CHAIR</span>
+              <h3 class="eboard-name">Phillip Watkins</h3>
+            </div>
+          </div>
+
+          <div class="eboard-card-back">
+            <div>
+              <span class="position-badge">CORPORATE RELATIONS CHAIR</span>
+              <h3 class="eboard-name">Phillip Watkins</h3>
+              <dl class="eboard-details">
+                <dt>Year</dt><dd>Junior</dd>
+                <dt>Major</dt><dd>Civil Engineering (Minor: Spanish)</dd>
+              </dl>
+              <p class="eboard-fun-fact"><strong>Fun fact:</strong> I can play the guitar</p>
+            </div>
+            <a href="https://www.linkedin.com/in/phillip-watkins-/" target="_blank" rel="noopener noreferrer" class="btn btn-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg> Connect on LinkedIn</a>
+          </div>
+
         </div>
       </div>
 
-      <div class="member-row reveal from-left">
-        <div class="member-photo-wrap">
-          <div class="member-photo-placeholder">👤</div>
-        </div>
-        <div class="member-text">
-          <p class="member-title">Corporate Relations Chair</p>
-          <p class="member-name">Phillip Watkins</p>
-          <div class="member-divider"></div>
-          <p class="member-grad">Graduating December 2027</p>
-        </div>
-      </div>
+      <div class="eboard-card-container reveal">
+        <div class="eboard-card-inner">
 
-      <div class="member-row flip reveal from-right">
-        <div class="member-photo-wrap">
-          <div class="member-photo-placeholder">👤</div>
-        </div>
-        <div class="member-text">
-          <p class="member-title">PCI Chair</p>
-          <p class="member-name">Rachel Mwamba</p>
-          <div class="member-divider"></div>
-          <p class="member-grad">Graduating May 2028</p>
+          <div class="eboard-card-front">
+            <div class="eboard-photo" data-initials="RM">
+              <img src="images/rachel-mwamba.jpg" alt="Rachel Mwamba" class="eboard-img img-focus-lower" loading="lazy" onerror="this.onerror=null; this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+            </div>
+            <div class="eboard-info">
+              <span class="position-badge">PCI CHAIR</span>
+              <h3 class="eboard-name">Rachel Mwamba</h3>
+            </div>
+          </div>
+
+          <div class="eboard-card-back">
+            <div>
+              <span class="position-badge">PCI CHAIR</span>
+              <h3 class="eboard-name">Rachel Mwamba</h3>
+              <dl class="eboard-details">
+                <dt>Year</dt><dd>Junior</dd>
+                <dt>Major</dt><dd>Mechanical Engineering w/ Concentration in Biomed</dd>
+              </dl>
+              <p class="eboard-fun-fact"><strong>Fun fact:</strong> I went ziplining in the Dominican Republic</p>
+            </div>
+            <a href="https://www.linkedin.com/in/rachel-mwamba-757038289/" target="_blank" rel="noopener noreferrer" class="btn btn-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg> Connect on LinkedIn</a>
+          </div>
+
         </div>
       </div>
 
@@ -321,13 +426,25 @@
 
   <!-- FOOTER -->
   <footer>
-    <p><strong>UNCC NSBE</strong> — UNC Charlotte Chapter</p>
-    <p class="mt-1">
-      <a href="https://www.instagram.com/UNCC_NSBE" target="_blank">@UNCC_NSBE</a>
-      &nbsp;|&nbsp;
-      <a href="contact.html">Contact Us</a>
-    </p>
-    <p class="mt-1" style="font-size: 0.8rem; opacity: 0.6;">© 2025–2026 UNCC NSBE. All rights reserved.</p>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p class="footer-title">UNCC NSBE</p>
+        <p class="footer-tagline">Region II Collegiate Chapter</p>
+        <p class="footer-contact">
+          <a href="https://www.instagram.com/UNCC_NSBE" target="_blank" rel="noopener">@UNCC_NSBE</a>
+          <span aria-hidden="true">·</span>
+          <a href="mailto:unccnsbe.pres@gmail.com">unccnsbe.pres@gmail.com</a>
+        </p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="index.html">Home</a>
+        <a href="eboard.html">E-Board</a>
+        <a href="dues.html">Dues</a>
+        <a href="sponsorship.html">Sponsorship</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+    <p class="footer-copy">© 2025–2026 UNCC NSBE. All rights reserved.</p>
   </footer>
 
   <script>
@@ -348,6 +465,15 @@
     }, { threshold: 0.15 });
 
     reveals.forEach(el => observer.observe(el));
+
+    // Flip cards on tap (hover handles desktop); links still work normally
+    document.querySelectorAll('.eboard-card-container').forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (!e.target.closest('a')) {
+          card.classList.toggle('flipped');
+        }
+      });
+    });
   </script>
 
 </body>

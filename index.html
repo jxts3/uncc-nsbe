@@ -3,14 +3,405 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>UNCC NSBE — National Society of Black Engineers</title>
+  <title>UNCC NSBE</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+
+    /* ── HERO ── */
+    .hero {
+      background-color: var(--green);
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle geometric background pattern */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 50%, rgba(185,151,91,0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    /* Technical grid overlay, faded toward the edges */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 48px 48px;
+      -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+      mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+      pointer-events: none;
+    }
+
+    .hero > *:not(.hero-scroll-hint) {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.2s forwards;
+    }
+
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.4rem, 7vw, 5rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -1px;
+      max-width: 780px;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.4s forwards;
+    }
+
+    .hero h1 span {
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 500px;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.6s forwards;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.8s forwards;
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.75rem;
+      font-family: var(--font-heading);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      animation: bounce 2s ease infinite;
+    }
+
+    .hero-scroll-hint::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: rgba(255,255,255,0.2);
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: var(--dark);
+      padding: 2rem;
+    }
+
+    .stats-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      text-align: center;
+    }
+
+    .stat + .stat { border-left: 1px solid rgba(185, 151, 91, 0.35); }
+
+    .stat-number {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #B9975B;
+      line-height: 1.1;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-label {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--white);
+      opacity: 0.9;
+    }
+
+    /* ── MISSION ── */
+    .mission-section {
+      background: var(--white);
+      padding: 6rem 2rem;
+    }
+
+    .mission-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .mission-label {
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .mission-heading {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+    }
+
+    .mission-text {
+      font-size: 1.1rem;
+      color: var(--gray);
+      line-height: 1.8;
+      border-left: 3px solid var(--gold);
+      padding-left: 1.5rem;
+    }
+
+    .pillars-grid {
+      max-width: 1100px;
+      margin: 4rem auto 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .pillar {
+      background: var(--off-white);
+      border-radius: 12px;
+      padding: 1.75rem;
+      border: 1px solid #E2E8F0;
+    }
+
+    .pillar h3 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin: 1rem 0 0.4rem;
+    }
+
+    .pillar p {
+      font-size: 0.92rem;
+      color: var(--gray);
+      line-height: 1.65;
+    }
+
+    /* ── EXPLORE ── */
+    .explore-section {
+      background: var(--off-white);
+      padding: 6rem 2rem;
+    }
+
+    .explore-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .explore-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .explore-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .explore-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      border: 1px solid #E2E8F0;
+      border-top: 3px solid var(--green);
+      box-shadow: 0 1px 3px rgba(15, 31, 22, 0.04);
+    }
+
+    /* Overrides the site-wide card hover: keep the subtle frame, swap the accent to gold */
+    .explore-card:hover {
+      transform: translateY(-4px);
+      border-color: #E2E8F0;
+      border-top-color: var(--gold);
+    }
+
+    .explore-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: -0.2px;
+    }
+
+    .explore-card p {
+      font-size: 0.9rem;
+      color: var(--gray);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .explore-card-link {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      color: var(--green);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 0.5rem;
+    }
+
+    .explore-card:hover .arrow { transform: translateX(4px); }
+
+    /* ── CALENDAR ── */
+    .calendar-section {
+      background: var(--white);
+      padding: 6rem 2rem;
+    }
+
+    .calendar-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .calendar-badge {
+      display: inline-block;
+      margin-top: 2rem;
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      color: var(--green);
+      background: rgba(4, 106, 56, 0.08);
+      border-radius: 999px;
+      padding: 0.35rem 0.9rem;
+    }
+
+    .calendar-card {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #E2E8F0;
+      box-shadow: 0 4px 16px rgba(15, 31, 22, 0.06);
+      background: var(--white);
+      margin-top: 0.75rem;
+    }
+
+    .calendar-card iframe { display: block; }
+
+    .calendar-note {
+      margin-top: 1rem;
+      font-size: 0.875rem;
+      color: var(--gray);
+      text-align: center;
+    }
+
+    /* ── INSTAGRAM CTA ── */
+    .ig-cta {
+      background: var(--green);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .ig-cta h2 {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.75rem;
+    }
+
+    .ig-cta p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .mission-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .pillars-grid  { grid-template-columns: 1fr; margin-top: 2.5rem; }
+      .explore-grid  { grid-template-columns: 1fr; }
+      .stats-bar { padding: 1.5rem 0.75rem; }
+      .stats-inner { gap: 0.5rem; }
+      .stat-number { font-size: 1.5rem; }
+      .stat-label { font-size: 0.65rem; letter-spacing: 0.5px; }
+    }
+
+  </style>
 </head>
 <body>
 
   <!-- NAVBAR -->
   <nav>
-    <a href="index.html" class="nav-logo">UNCC <span>NSBE</span></a>
+    <a href="index.html" class="nav-brand" aria-label="UNCC NSBE home">
+      <img src="images/nsbe-logo.png" alt="NSBE logo">
+      <span class="nav-divider" aria-hidden="true"></span>
+      <img src="images/uncc-logo.png" alt="UNC Charlotte logo">
+      <span class="nav-title">UNCC NSBE</span>
+    </a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
@@ -25,99 +416,202 @@
   </nav>
 
   <!-- HERO -->
-  <section style="background-color: var(--green); color: var(--white); padding: 5rem 2rem; text-align: center;">
-    <p style="font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;">
-      UNC Charlotte Chapter
+  <section class="hero">
+    <p class="hero-eyebrow">UNC Charlotte Chapter</p>
+    <h1>Engineering the <span>Future.</span> Together.</h1>
+    <p class="hero-sub">
+      Building community, advancing careers, and developing the next generation of Black engineers at UNC Charlotte.
     </p>
-    <h1 style="font-family: var(--font-heading); font-size: clamp(2.2rem, 6vw, 4rem); line-height: 1.15; max-width: 700px; margin: 0 auto 1.25rem;">
-      National Society of Black Engineers
-    </h1>
-    <p style="font-size: 1.05rem; opacity: 0.85; max-width: 540px; margin: 0 auto 2rem;">
-      Empowering Black engineering students at UNC Charlotte to excel academically, succeed professionally, and impact their community.
-    </p>
-    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-      <a href="dues.html" class="btn btn-gold">Pay Dues</a>
-      <a href="contact.html" class="btn btn-outline" style="border-color: var(--white); color: var(--white);">Get Involved</a>
+    <div class="hero-buttons">
+      <a href="dues.html" class="btn btn-gold">Become a Member</a>
+      <a href="eboard.html" class="btn btn-outline" style="border-color:rgba(255,255,255,0.5); color:var(--white);">Meet the Team</a>
     </div>
+    <div class="hero-scroll-hint">Scroll</div>
   </section>
 
+  <!-- STATS BAR -->
+  <div class="stats-bar reveal">
+    <div class="stats-inner">
+      <div class="stat">
+        <div class="stat-number">13</div>
+        <div class="stat-label">E-Board Members</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">$20</div>
+        <div class="stat-label">Annual Dues</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">1971</div>
+        <div class="stat-label">Founded</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">500+</div>
+        <div class="stat-label">NSBE Chapters</div>
+      </div>
+    </div>
+  </div>
+
   <!-- MISSION -->
-  <section style="background: var(--white); padding: 4rem 2rem;">
-    <div style="max-width: 700px; margin: 0 auto; text-align: center;">
-      <h2 class="section-title" style="text-align: center;">Our Mission</h2>
-      <div class="section-divider" style="margin: 0.5rem auto 1.5rem;"></div>
-      <p style="font-size: 1.05rem; color: var(--gray);">
+  <section class="mission-section">
+    <div class="mission-inner reveal">
+      <div>
+        <p class="mission-label">Who We Are</p>
+        <h2 class="mission-heading">Our Mission</h2>
+      </div>
+      <p class="mission-text">
         To increase the number of culturally responsible Black engineers who excel academically, succeed professionally, and positively impact the community.
       </p>
     </div>
+
+    <div class="pillars-grid">
+
+      <div class="pillar reveal">
+        <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+        <h3>Academic Excellence</h3>
+        <p>Promoting study groups, technical workshops, and maintaining academic success across all engineering majors.</p>
+      </div>
+
+      <div class="pillar reveal">
+        <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></svg></span>
+        <h3>Professional Development</h3>
+        <p>Connecting Niners with top corporate sponsors, resume breakdowns, and national conference prep.</p>
+      </div>
+
+      <div class="pillar reveal">
+        <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></span>
+        <h3>Community &amp; Impact</h3>
+        <p>Fostering brotherhood and sisterhood, community service, and pre-collegiate STEM outreach.</p>
+      </div>
+
+    </div>
   </section>
 
-  <!-- QUICK LINKS -->
-  <section class="container">
-    <h2 class="section-title">Explore</h2>
-    <div class="section-divider"></div>
-
-    <div class="card-grid">
-      <div class="card">
-        <h3 style="font-family: var(--font-heading); color: var(--green); margin-bottom: 0.5rem;">📋 E-Board</h3>
-        <p style="color: var(--gray); font-size: 0.95rem; margin-bottom: 1rem;">Meet our executive board members for the 2025–2026 academic year.</p>
-        <a href="eboard.html" class="btn btn-outline">Meet the Team</a>
+  <!-- EXPLORE -->
+  <section class="explore-section">
+    <div class="explore-inner">
+      <div class="explore-header reveal">
+        <div>
+          <h2 class="section-title">Explore</h2>
+          <div class="section-divider" style="margin-bottom:0;"></div>
+        </div>
+        <a href="contact.html" class="btn btn-green">Get Involved <span class="arrow" aria-hidden="true">→</span></a>
       </div>
 
-      <div class="card">
-        <h3 style="font-family: var(--font-heading); color: var(--green); margin-bottom: 0.5rem;">📰 News</h3>
-        <p style="color: var(--gray); font-size: 0.95rem; margin-bottom: 1rem;">Stay up to date with chapter announcements and our quarterly newsletter.</p>
-        <a href="news.html" class="btn btn-outline">Read Updates</a>
-      </div>
+      <div class="explore-grid">
 
-      <div class="card">
-        <h3 style="font-family: var(--font-heading); color: var(--green); margin-bottom: 0.5rem;">💳 Dues</h3>
-        <p style="color: var(--gray); font-size: 0.95rem; margin-bottom: 1rem;">$25/year. Pay via CashApp $NSBEUNCC or PayPal.</p>
-        <a href="dues.html" class="btn btn-outline">Pay Dues</a>
-      </div>
+        <div class="explore-card reveal">
+          <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></span>
+          <h3>Pay Dues</h3>
+          <p>$20 a year through CashApp or PayPal, plus how to register for national membership.</p>
+          <a href="dues.html" class="explore-card-link">Pay now <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
 
-      <div class="card">
-        <h3 style="font-family: var(--font-heading); color: var(--green); margin-bottom: 0.5rem;">🤝 Sponsorship</h3>
-        <p style="color: var(--gray); font-size: 0.95rem; margin-bottom: 1rem;">Partner with us and support the next generation of Black engineers.</p>
-        <a href="sponsorship.html" class="btn btn-outline">Learn More</a>
+        <div class="explore-card reveal">
+          <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+          <h3>Executive Board</h3>
+          <p>Meet the 13 students leading the chapter for the 2025–2026 school year.</p>
+          <a href="eboard.html" class="explore-card-link">Meet the team <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+
+        <div class="explore-card reveal">
+          <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
+          <h3>Sponsorship</h3>
+          <p>Support our members and connect with engineering talent at UNC Charlotte.</p>
+          <a href="sponsorship.html" class="explore-card-link">Learn more <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+
+        <div class="explore-card reveal">
+          <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8z"/></svg></span>
+          <h3>News &amp; Updates</h3>
+          <p>Chapter announcements, event recaps, and the quarterly newsletter.</p>
+          <a href="news.html" class="explore-card-link">Read updates <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+
       </div>
     </div>
   </section>
 
   <!-- CALENDAR -->
-  <section style="background: var(--white); padding: 4rem 2rem;">
-    <div style="max-width: 1100px; margin: 0 auto;">
-      <h2 class="section-title">Upcoming Events</h2>
-      <div class="section-divider"></div>
-      <p style="color: var(--gray); margin-bottom: 1.5rem;">
-        Check our general body meeting schedule and upcoming events below.
-      </p>
-      <div style="border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);">
-        <iframe
-          src="https://calendar.google.com/calendar/embed?src=c_787992e0550377f5f213f4a6b45a8815489634f525907168257b8be42920523c%40group.calendar.google.com&ctz=America%2FChicago"
-          style="border: 0; width: 100%; height: 600px;"
-          frameborder="0"
-          scrolling="no">
-        </iframe>
+  <section class="calendar-section">
+    <div class="calendar-inner">
+      <div class="reveal">
+        <h2 class="section-title">Upcoming Events</h2>
+        <div class="section-divider"></div>
+        <p style="color:var(--gray); font-size:0.95rem;">
+          General body meetings, workshops, and other chapter events. All times are Eastern.
+        </p>
       </div>
+      <div class="reveal">
+        <span class="calendar-badge">FALL 2026 GENERAL BODY CALENDAR</span>
+        <div class="calendar-card">
+          <iframe
+            src="https://calendar.google.com/calendar/embed?src=c_787992e0550377f5f213f4a6b45a8815489634f525907168257b8be42920523c%40group.calendar.google.com&amp;ctz=America%2FNew_York"
+            width="100%" height="600" frameborder="0" scrolling="no"
+            style="border: 0; border-radius: 12px;"
+            title="UNCC NSBE events calendar"
+            loading="lazy">
+          </iframe>
+        </div>
+        <p class="calendar-note">
+          Can't view calendar events? Make sure you are logged into Google or check event updates on Instagram
+          <a href="https://www.instagram.com/UNCC_NSBE" target="_blank" rel="noopener">@UNCC_NSBE</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM CTA -->
+  <section class="ig-cta">
+    <div class="reveal">
+      <h2>Stay Connected</h2>
+      <p>Follow us on Instagram for event announcements, opportunities, and chapter news.</p>
+      <a href="https://www.instagram.com/UNCC_NSBE" target="_blank" class="btn btn-gold">
+        @UNCC_NSBE
+      </a>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p><strong>UNCC NSBE</strong> — UNC Charlotte Chapter</p>
-    <p class="mt-1">
-      <a href="https://www.instagram.com/UNCC_NSBE" target="_blank">@UNCC_NSBE</a>
-      &nbsp;|&nbsp;
-      <a href="mailto:unccnsbe.pres@gmail.com">unccnsbe.pres@gmail.com</a>
-    </p>
-    <p class="mt-1" style="font-size: 0.8rem; opacity: 0.6;">© 2025–2026 UNCC NSBE. All rights reserved.</p>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p class="footer-title">UNCC NSBE</p>
+        <p class="footer-tagline">Region II Collegiate Chapter</p>
+        <p class="footer-contact">
+          <a href="https://www.instagram.com/UNCC_NSBE" target="_blank" rel="noopener">@UNCC_NSBE</a>
+          <span aria-hidden="true">·</span>
+          <a href="mailto:unccnsbe.pres@gmail.com">unccnsbe.pres@gmail.com</a>
+        </p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="index.html">Home</a>
+        <a href="eboard.html">E-Board</a>
+        <a href="dues.html">Dues</a>
+        <a href="sponsorship.html">Sponsorship</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+    <p class="footer-copy">© 2025–2026 UNCC NSBE. All rights reserved.</p>
   </footer>
 
   <script>
+    // Mobile nav
     const toggle = document.getElementById('navToggle');
     const links  = document.getElementById('navLinks');
     toggle.addEventListener('click', () => links.classList.toggle('open'));
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    reveals.forEach(el => observer.observe(el));
   </script>
 
 </body>

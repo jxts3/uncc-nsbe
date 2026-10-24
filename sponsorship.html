@@ -8,9 +8,9 @@
   <style>
     .tiers-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 1.5rem;
-      margin-bottom: 3rem;
+      align-items: stretch;
     }
 
     .tier-card {
@@ -19,12 +19,49 @@
       box-shadow: var(--shadow);
       padding: 2rem 1.5rem;
       text-align: center;
-      border-top: 5px solid var(--light-gray);
-      transition: transform 0.2s;
+      border-top: 3px solid var(--light-gray);
+      position: relative;
     }
 
-    .tier-card:hover {
-      transform: translateY(-4px);
+    /* Recommended tier */
+    .tier-card.featured {
+      border-top: 3px solid var(--gold);
+      box-shadow: 0 0 0 1px rgba(185, 151, 91, 0.45), 0 8px 24px rgba(185, 151, 91, 0.18);
+    }
+
+    .tier-badge {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-heading);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      color: #000000;
+      background: var(--gold);
+      border-radius: 999px;
+      padding: 0.25rem 0.75rem;
+      white-space: nowrap;
+    }
+
+    .packet-cta {
+      text-align: center;
+      margin: 2.5rem 0 3rem;
+    }
+
+    .packet-cta .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .packet-cta .btn svg { width: 18px; height: 18px; }
+
+    .packet-cta p {
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-top: 0.75rem;
     }
 
     .tier-card.bronze  { border-top-color: #cd7f32; }
@@ -71,16 +108,21 @@
       border-bottom: none;
     }
 
+    /* CSS-drawn check mark */
     .tier-benefits li::before {
-      content: "✓";
-      color: var(--green);
-      font-weight: 700;
+      content: "";
+      width: 5px;
+      height: 10px;
+      margin: 0.35rem 0.2rem 0 0.15rem;
+      border: solid var(--green);
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
       flex-shrink: 0;
     }
 
     .why-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 1.25rem;
       margin-bottom: 3rem;
     }
@@ -93,8 +135,7 @@
       text-align: center;
     }
 
-    .why-card .icon {
-      font-size: 2rem;
+    .why-card .icon-box {
       margin-bottom: 0.75rem;
     }
 
@@ -131,13 +172,28 @@
       margin-left: auto;
       margin-right: auto;
     }
+    /* 4 columns get cramped on tablets */
+    @media (max-width: 1024px) {
+      .tiers-grid,
+      .why-grid { grid-template-columns: repeat(2, 1fr); row-gap: 2rem; }
+    }
+
+    @media (max-width: 768px) {
+      .tiers-grid,
+      .why-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
 
   <!-- NAVBAR -->
   <nav>
-    <a href="index.html" class="nav-logo">UNCC <span>NSBE</span></a>
+    <a href="index.html" class="nav-brand" aria-label="UNCC NSBE home">
+      <img src="images/nsbe-logo.png" alt="NSBE logo">
+      <span class="nav-divider" aria-hidden="true"></span>
+      <img src="images/uncc-logo.png" alt="UNC Charlotte logo">
+      <span class="nav-title">UNCC NSBE</span>
+    </a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
@@ -152,12 +208,12 @@
   </nav>
 
   <!-- PAGE HEADER -->
-  <div class="page-header">
+  <div class="page-header fade-in">
     <h1>Sponsorship</h1>
-    <p>Partner with UNCC NSBE and invest in the next generation of Black engineers</p>
+    <p>Partner with UNCC NSBE and support Black engineering students at UNC Charlotte</p>
   </div>
 
-  <div class="container">
+  <div class="container fade-in">
 
     <!-- WHY SPONSOR -->
     <h2 class="section-title">Why Sponsor Us?</h2>
@@ -165,22 +221,22 @@
 
     <div class="why-grid">
       <div class="why-card">
-        <div class="icon">🎓</div>
-        <h3>Talented Pipeline</h3>
+        <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/><path d="M22 10v6"/></svg></span>
+        <h3>Talent Pipeline</h3>
         <p>Connect directly with motivated Black engineering students at UNC Charlotte.</p>
       </div>
       <div class="why-card">
-        <div class="icon">🌍</div>
+        <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/></svg></span>
         <h3>Community Impact</h3>
         <p>Your support funds events, scholarships, and professional development for our members.</p>
       </div>
       <div class="why-card">
-        <div class="icon">📣</div>
+        <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 18-5v12L3 14v-3Z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span>
         <h3>Brand Visibility</h3>
-        <p>Get your name in front of hundreds of students across our events and digital platforms.</p>
+        <p>Your company's name at our events, on our flyers, and across our social channels.</p>
       </div>
       <div class="why-card">
-        <div class="icon">🤝</div>
+        <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
         <h3>Recruiting Access</h3>
         <p>Access to resume books, info tables, and direct recruiting opportunities at our events.</p>
       </div>
@@ -213,7 +269,8 @@
         </ul>
       </div>
 
-      <div class="tier-card gold">
+      <div class="tier-card gold featured">
+        <span class="tier-badge">RECOMMENDED</span>
         <p class="tier-label">Gold</p>
         <p class="tier-amount">$1,000</p>
         <ul class="tier-benefits">
@@ -239,11 +296,19 @@
 
     </div>
 
+    <!-- SPONSORSHIP PACKET: add the PDF at docs/sponsorship-packet.pdf -->
+    <div class="packet-cta">
+      <a href="docs/sponsorship-packet.pdf" class="btn btn-green" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg> Download Sponsorship Packet (PDF)
+      </a>
+      <p>Full tier details, past events, and member demographics.</p>
+    </div>
+
     <!-- CONTACT CTA -->
     <div class="contact-cta">
       <h2>Ready to Partner?</h2>
       <p>
-        Reach out to our e-board and we'll send over our full sponsorship packet with more details on how we can work together.
+        Have questions or want a custom package? Reach out to our e-board and we'll find a partnership that works for you.
       </p>
       <a href="contact.html" class="btn btn-gold">Get in Touch</a>
     </div>
@@ -252,13 +317,25 @@
 
   <!-- FOOTER -->
   <footer>
-    <p><strong>UNCC NSBE</strong> — UNC Charlotte Chapter</p>
-    <p class="mt-1">
-      <a href="https://www.instagram.com/uncc_nsbe" target="_blank">Instagram</a>
-      &nbsp;|&nbsp;
-      <a href="contact.html">Contact Us</a>
-    </p>
-    <p class="mt-1" style="font-size: 0.8rem; opacity: 0.6;">© 2025–2026 UNCC NSBE. All rights reserved.</p>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p class="footer-title">UNCC NSBE</p>
+        <p class="footer-tagline">Region II Collegiate Chapter</p>
+        <p class="footer-contact">
+          <a href="https://www.instagram.com/UNCC_NSBE" target="_blank" rel="noopener">@UNCC_NSBE</a>
+          <span aria-hidden="true">·</span>
+          <a href="mailto:unccnsbe.pres@gmail.com">unccnsbe.pres@gmail.com</a>
+        </p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="index.html">Home</a>
+        <a href="eboard.html">E-Board</a>
+        <a href="dues.html">Dues</a>
+        <a href="sponsorship.html">Sponsorship</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+    <p class="footer-copy">© 2025–2026 UNCC NSBE. All rights reserved.</p>
   </footer>
 
   <script>

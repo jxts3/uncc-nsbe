@@ -14,28 +14,29 @@
 
     .news-card {
       background: var(--white);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      border-radius: 12px;
+      border: 1px solid #E2E8F0;
       overflow: hidden;
-      transition: transform 0.2s;
     }
 
-    .news-card:hover {
-      transform: translateY(-3px);
-    }
-
+    /* Tag pills: add tag--event / tag--opportunity / tag--reminder for colour */
     .news-card-tag {
       display: inline-block;
-      background-color: var(--green);
-      color: var(--white);
-      font-size: 0.75rem;
+      font-family: var(--font-heading);
+      font-size: 0.7rem;
       font-weight: 600;
-      padding: 0.25rem 0.65rem;
-      border-radius: 4px;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      color: var(--green);
+      background: rgba(4, 106, 56, 0.08);
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
       margin-bottom: 0.75rem;
     }
+
+    .news-card-tag.tag--opportunity { color: #8a6a2e; background: rgba(185, 151, 91, 0.15); }
+    .news-card-tag.tag--event       { color: #1d4ed8; background: rgba(29, 78, 216, 0.08); }
+    .news-card-tag.tag--reminder    { color: #4b5563; background: rgba(75, 85, 99, 0.1); }
 
     .news-card-body {
       padding: 1.5rem;
@@ -60,30 +61,52 @@
       line-height: 1.6;
     }
 
-    /* Newsletter section */
-    .newsletter-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
+    /* Newsletter archive */
+    .newsletter-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .newsletter-card {
       background: var(--white);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1.5rem 2rem;
-      margin-bottom: 1.25rem;
-      flex-wrap: wrap;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      color: inherit;
     }
 
-    .newsletter-info h3 {
+    .newsletter-card:hover { text-decoration: none; }
+
+    .newsletter-card h3 {
       font-family: var(--font-heading);
-      font-size: 1rem;
+      font-size: 1.05rem;
       color: var(--dark);
+      margin-top: 0.6rem;
     }
 
-    .newsletter-info p {
-      font-size: 0.875rem;
+    .newsletter-card p {
+      font-size: 0.85rem;
       color: var(--gray);
-      margin-top: 0.2rem;
+      flex: 1;
+    }
+
+    .newsletter-link {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--green);
+      margin-top: 0.5rem;
+    }
+
+    .newsletter-card:hover .arrow { transform: translateX(4px); }
+
+    @media (max-width: 768px) {
+      .news-grid,
+      .newsletter-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -91,7 +114,12 @@
 
   <!-- NAVBAR -->
   <nav>
-    <a href="index.html" class="nav-logo">UNCC <span>NSBE</span></a>
+    <a href="index.html" class="nav-brand" aria-label="UNCC NSBE home">
+      <img src="images/nsbe-logo.png" alt="NSBE logo">
+      <span class="nav-divider" aria-hidden="true"></span>
+      <img src="images/uncc-logo.png" alt="UNC Charlotte logo">
+      <span class="nav-title">UNCC NSBE</span>
+    </a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
@@ -106,57 +134,56 @@
   </nav>
 
   <!-- PAGE HEADER -->
-  <div class="page-header">
+  <div class="page-header fade-in">
     <h1>News & Updates</h1>
     <p>Announcements, recaps, and our quarterly newsletter</p>
   </div>
 
-  <div class="container">
+  <div class="container fade-in">
 
-    <!-- NEWSLETTERS -->
-    <h2 class="section-title">Quarterly Newsletter</h2>
+    <!-- NEWSLETTER ARCHIVE -->
+    <h2 class="section-title">Newsletter Archive</h2>
     <div class="section-divider"></div>
 
     <!--
-      HOW TO ADD A NEWSLETTER:
-      Copy one .newsletter-row block, update the title, date, and
-      replace the href with a link to your Google Drive PDF or Canva link.
+      TO ADD A NEWSLETTER: copy one .newsletter-card to the top of the grid,
+      update the title and date, and set href to the PDF (Google Drive or Canva link).
     -->
+    <div class="newsletter-grid">
 
-    <div class="newsletter-row">
-      <div class="newsletter-info">
+      <a href="#" class="newsletter-card" target="_blank" rel="noopener">
+        <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg></span>
         <h3>Fall 2025 Newsletter</h3>
         <p>Published October 2025 · Issue #1</p>
-      </div>
-      <a href="#" class="btn btn-green" target="_blank">View PDF</a>
-    </div>
+        <span class="newsletter-link">Download PDF <span class="arrow" aria-hidden="true">→</span></span>
+      </a>
 
-    <div class="newsletter-row">
-      <div class="newsletter-info">
+      <a href="#" class="newsletter-card" target="_blank" rel="noopener">
+        <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg></span>
         <h3>Spring 2025 Newsletter</h3>
         <p>Published March 2025 · Issue #2</p>
-      </div>
-      <a href="#" class="btn btn-green" target="_blank">View PDF</a>
-    </div>
+        <span class="newsletter-link">Download PDF <span class="arrow" aria-hidden="true">→</span></span>
+      </a>
 
-    <div class="newsletter-row">
-      <div class="newsletter-info">
+      <a href="#" class="newsletter-card" target="_blank" rel="noopener">
+        <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg></span>
         <h3>Fall 2024 Newsletter</h3>
         <p>Published October 2024 · Issue #1</p>
-      </div>
-      <a href="#" class="btn btn-green" target="_blank">View PDF</a>
+        <span class="newsletter-link">Download PDF <span class="arrow" aria-hidden="true">→</span></span>
+      </a>
+
     </div>
 
     <!-- ANNOUNCEMENTS -->
-    <h2 class="section-title mt-4">Announcements</h2>
+    <h2 class="section-title mt-4">Chapter Announcements</h2>
     <div class="section-divider"></div>
 
     <div class="news-grid">
 
       <!--
-        HOW TO ADD AN ANNOUNCEMENT:
-        Copy one .news-card block below and update the tag, date, title, and excerpt.
-        Tags can be: Announcement, Event, Opportunity, Reminder
+        TO ADD AN ANNOUNCEMENT: copy one .news-card to the top of the grid and
+        update the tag, date, title, and text. Tag classes: (none) = Announcement,
+        tag--opportunity, tag--event, tag--reminder.
       -->
 
       <div class="news-card">
@@ -172,7 +199,7 @@
 
       <div class="news-card">
         <div class="news-card-body">
-          <span class="news-card-tag">Opportunity</span>
+          <span class="news-card-tag tag--opportunity">Opportunity</span>
           <p class="news-card-date">April 2025</p>
           <h3 class="news-card-title">NSBE National Convention Recap</h3>
           <p class="news-card-excerpt">
@@ -183,7 +210,7 @@
 
       <div class="news-card">
         <div class="news-card-body">
-          <span class="news-card-tag">Reminder</span>
+          <span class="news-card-tag tag--reminder">Reminder</span>
           <p class="news-card-date">March 2025</p>
           <h3 class="news-card-title">Dues Deadline — Spring Semester</h3>
           <p class="news-card-excerpt">
@@ -194,7 +221,7 @@
 
       <div class="news-card">
         <div class="news-card-body">
-          <span class="news-card-tag">Event</span>
+          <span class="news-card-tag tag--event">Event</span>
           <p class="news-card-date">February 2025</p>
           <h3 class="news-card-title">Black History Month Networking Event</h3>
           <p class="news-card-excerpt">
@@ -204,17 +231,71 @@
       </div>
 
     </div>
+
+    <!-- CHAPTER FORMS HUB -->
+    <section class="forms-hub-section">
+      <h2 class="section-title">Chapter Forms</h2>
+      <div class="section-divider"></div>
+      <div class="forms-hub">
+
+      <div class="forms-card">
+        <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></span>
+        <h3>Contact &amp; General Inquiries</h3>
+        <p>Questions about membership, events, or partnerships? Send the e-board a message.</p>
+        <a href="contact.html#contact-form" class="btn btn-secondary">Open Form</a>
+      </div>
+
+      <div class="forms-card">
+        <!-- TODO: replace # with the Member Highlight Google Form link -->
+        <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg></span>
+        <h3>Member Achievement Highlight</h3>
+        <p>Landed an internship, award, or research spot? Tell us so we can celebrate you.</p>
+        <a href="#" target="_blank" rel="noopener" class="btn btn-secondary">Open Form</a>
+      </div>
+
+      <div class="forms-card">
+        <!-- TODO: replace # with the current event RSVP Google Form link -->
+        <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M10.4 12.6a2 2 0 0 1 3 3L8 21l-4 1 1-4Z"/></svg></span>
+        <h3>Event Interest &amp; RSVPs</h3>
+        <p>RSVP for upcoming chapter events and let us know what you want to see next.</p>
+        <a href="#" target="_blank" rel="noopener" class="btn btn-secondary">Open Form</a>
+      </div>
+
+      </div>
+    </section>
+
+    <!-- INSTAGRAM CTA -->
+    <div class="ig-banner">
+      <h2>Stay in the Loop</h2>
+      <p>Follow @UNCC_NSBE for daily updates and live event announcements.</p>
+      <a href="https://www.instagram.com/UNCC_NSBE" target="_blank" rel="noopener" class="btn btn-gold">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg> Follow @UNCC_NSBE
+      </a>
+    </div>
+
   </div>
 
   <!-- FOOTER -->
   <footer>
-    <p><strong>UNCC NSBE</strong> — UNC Charlotte Chapter</p>
-    <p class="mt-1">
-      <a href="https://www.instagram.com/uncc_nsbe" target="_blank">Instagram</a>
-      &nbsp;|&nbsp;
-      <a href="contact.html">Contact Us</a>
-    </p>
-    <p class="mt-1" style="font-size: 0.8rem; opacity: 0.6;">© 2025–2026 UNCC NSBE. All rights reserved.</p>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p class="footer-title">UNCC NSBE</p>
+        <p class="footer-tagline">Region II Collegiate Chapter</p>
+        <p class="footer-contact">
+          <a href="https://www.instagram.com/UNCC_NSBE" target="_blank" rel="noopener">@UNCC_NSBE</a>
+          <span aria-hidden="true">·</span>
+          <a href="mailto:unccnsbe.pres@gmail.com">unccnsbe.pres@gmail.com</a>
+        </p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="index.html">Home</a>
+        <a href="eboard.html">E-Board</a>
+        <a href="dues.html">Dues</a>
+        <a href="sponsorship.html">Sponsorship</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+    <p class="footer-copy">© 2025–2026 UNCC NSBE. All rights reserved.</p>
   </footer>
 
   <script>

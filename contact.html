@@ -8,8 +8,8 @@
   <style>
     .contact-layout {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 2.5rem;
       align-items: start;
     }
 
@@ -29,7 +29,6 @@
       align-items: flex-start;
     }
 
-    .contact-icon { font-size: 1.75rem; flex-shrink: 0; }
 
     .contact-block h3 {
       font-family: var(--font-heading);
@@ -39,13 +38,33 @@
     }
 
     .contact-block p { font-size: 0.9rem; color: var(--gray); }
+
+    .groupme-qr {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      margin-top: 0.75rem;
+      padding: 6px;
+      border-radius: 8px;
+      border: 1px solid var(--light-gray);
+      background: var(--white);
+    }
     .contact-block a { color: var(--green); font-weight: 600; font-size: 0.9rem; }
 
     .contact-form {
       background: var(--white);
-      border-radius: var(--radius);
+      border-radius: 12px;
       box-shadow: var(--shadow);
-      padding: 2rem;
+      padding: 1.5rem;
+      scroll-margin-top: 80px; /* clears the sticky nav when jumped to */
+    }
+
+    .contact-form iframe { display: block; }
+
+    .form-fallback {
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-top: 0.75rem;
     }
 
     .contact-form h2 {
@@ -62,67 +81,7 @@
       margin-bottom: 1.5rem;
     }
 
-    .form-group { margin-bottom: 1.1rem; }
-
-    .form-group label {
-      display: block;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--dark);
-      margin-bottom: 0.4rem;
-    }
-
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-      width: 100%;
-      padding: 0.65rem 0.9rem;
-      border: 1.5px solid var(--light-gray);
-      border-radius: 8px;
-      font-family: var(--font-body);
-      font-size: 0.95rem;
-      color: var(--dark);
-      background: var(--off-white);
-      transition: border-color 0.2s;
-      outline: none;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus { border-color: var(--green); }
-
-    .form-group textarea { resize: vertical; min-height: 120px; }
-
-    .instagram-cta {
-      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
-      color: var(--white);
-      border-radius: var(--radius);
-      padding: 2.5rem 2rem;
-      text-align: center;
-      margin-top: 3rem;
-    }
-
-    .instagram-cta h2 {
-      font-family: var(--font-heading);
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .instagram-cta p { opacity: 0.9; margin-bottom: 1.25rem; font-size: 0.95rem; }
-
-    .btn-instagram {
-      background: var(--white);
-      color: #833ab4;
-      font-weight: 700;
-      padding: 0.7rem 1.75rem;
-      border-radius: 8px;
-      display: inline-block;
-      transition: opacity 0.2s;
-    }
-
-    .btn-instagram:hover { opacity: 0.9; text-decoration: none; }
-
-    @media (max-width: 700px) {
+    @media (max-width: 768px) {
       .contact-layout { grid-template-columns: 1fr; }
     }
   </style>
@@ -131,7 +90,12 @@
 
   <!-- NAVBAR -->
   <nav>
-    <a href="index.html" class="nav-logo">UNCC <span>NSBE</span></a>
+    <a href="index.html" class="nav-brand" aria-label="UNCC NSBE home">
+      <img src="images/nsbe-logo.png" alt="NSBE logo">
+      <span class="nav-divider" aria-hidden="true"></span>
+      <img src="images/uncc-logo.png" alt="UNC Charlotte logo">
+      <span class="nav-title">UNCC NSBE</span>
+    </a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
@@ -146,108 +110,119 @@
   </nav>
 
   <!-- PAGE HEADER -->
-  <div class="page-header">
+  <div class="page-header fade-in">
     <h1>Contact Us</h1>
-    <p>Have a question? Reach out and we'll get back to you.</p>
+    <p>Questions about membership, events, or sponsorship? Here's how to reach us.</p>
   </div>
 
-  <div class="container">
+  <div class="container fade-in">
     <div class="contact-layout">
 
       <!-- LEFT: Contact Info -->
       <div class="contact-info">
 
         <div class="contact-block">
-          <div class="contact-icon">📸</div>
+          <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></span>
           <div>
             <h3>Instagram</h3>
-            <p>DM us for the fastest response. We post updates, event recaps, and opportunities.</p>
+            <p>DMs are the fastest way to reach us. We also post event updates and opportunities.</p>
             <a href="https://www.instagram.com/UNCC_NSBE" target="_blank">@UNCC_NSBE</a>
           </div>
         </div>
 
         <div class="contact-block">
-          <div class="contact-icon">✉️</div>
+          <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
+          <div>
+            <h3>GroupMe</h3>
+            <p>Join the chapter GroupMe for meeting reminders and event updates.</p>
+            <img src="images/groupme-qr.png" alt="GroupMe QR code" class="groupme-qr">
+          </div>
+        </div>
+
+        <div class="contact-block">
+          <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
           <div>
             <h3>Email</h3>
-            <p>For formal inquiries, sponsorships, or general questions.</p>
+            <p>For sponsorships, partnerships, and other formal inquiries.</p>
             <a href="mailto:unccnsbe.pres@gmail.com">unccnsbe.pres@gmail.com</a>
           </div>
         </div>
 
         <div class="contact-block">
-          <div class="contact-icon">📍</div>
+          <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
           <div>
             <h3>Location</h3>
-            <p>UNC Charlotte campus. Check the calendar on the home page for exact room and time.</p>
+            <p>We meet on the UNC Charlotte campus. Rooms and times are listed on the home page calendar.</p>
           </div>
         </div>
 
         <div class="contact-block">
-          <div class="contact-icon">💳</div>
+          <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></span>
           <div>
             <h3>Pay Dues</h3>
             <p>CashApp: <strong>$NSBEUNCC</strong><br>PayPal: National Society of Black Engineers at UNCC</p>
-            <a href="dues.html">Full dues instructions →</a>
+            <a href="dues.html">Full dues instructions <span class="arrow" aria-hidden="true">→</span></a>
           </div>
         </div>
 
       </div>
 
-      <!-- RIGHT: Contact Form -->
-      <div class="contact-form">
+      <!-- RIGHT: Contact Form (Google Form embed) -->
+      <div class="contact-form" id="contact-form">
         <h2>Send a Message</h2>
         <div class="divider"></div>
-
-        <!--
-          FORM SETUP (takes 2 minutes):
-          1. Go to formspree.io and create a free account
-          2. Create a new form — it gives you an endpoint URL
-          3. Replace "YOUR_FORMSPREE_ID" below with your form ID
-          Example: action="https://formspree.io/f/abcdefgh"
-        -->
-        <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
-
-          <div class="form-group">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" name="name" placeholder="Jane Smith" required />
-          </div>
-
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="jane@uncc.edu" required />
-          </div>
-
-          <div class="form-group">
-            <label for="subject">Subject</label>
-            <select id="subject" name="subject">
-              <option value="">Select a topic</option>
-              <option value="general">General Question</option>
-              <option value="membership">Membership / Dues</option>
-              <option value="sponsorship">Sponsorship Inquiry</option>
-              <option value="events">Events</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
-          </div>
-
-          <button type="submit" class="btn btn-green" style="width: 100%;">Send Message</button>
-
-        </form>
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSdACDebHpmTXqi6QFkREAdQ2wJ_qQ5sxHd5EThO0pr32KKDzQ/viewform?embedded=true"
+          width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0"
+          style="border-radius: 12px; border: 1px solid #E2E8F0;"
+          title="UNCC NSBE contact form"
+          loading="lazy">Loading…</iframe>
+        <p class="form-fallback">
+          Form not loading?
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdACDebHpmTXqi6QFkREAdQ2wJ_qQ5sxHd5EThO0pr32KKDzQ/viewform" target="_blank" rel="noopener">Open it in Google Forms</a>.
+        </p>
       </div>
 
     </div>
 
+    <!-- CHAPTER FORMS HUB -->
+    <section class="forms-hub-section">
+      <h2 class="section-title">Chapter Forms</h2>
+      <div class="section-divider"></div>
+      <div class="forms-hub">
+
+      <div class="forms-card">
+        <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></span>
+        <h3>Contact &amp; General Inquiries</h3>
+        <p>Questions about membership, events, or partnerships? Send the e-board a message.</p>
+        <a href="#contact-form" class="btn btn-secondary">Open Form</a>
+      </div>
+
+      <div class="forms-card">
+        <!-- TODO: replace # with the Member Highlight Google Form link -->
+        <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg></span>
+        <h3>Member Achievement Highlight</h3>
+        <p>Landed an internship, award, or research spot? Tell us so we can celebrate you.</p>
+        <a href="#" target="_blank" rel="noopener" class="btn btn-secondary">Open Form</a>
+      </div>
+
+      <div class="forms-card">
+        <!-- TODO: replace # with the current event RSVP Google Form link -->
+        <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M10.4 12.6a2 2 0 0 1 3 3L8 21l-4 1 1-4Z"/></svg></span>
+        <h3>Event Interest &amp; RSVPs</h3>
+        <p>RSVP for upcoming chapter events and let us know what you want to see next.</p>
+        <a href="#" target="_blank" rel="noopener" class="btn btn-secondary">Open Form</a>
+      </div>
+
+      </div>
+    </section>
+
     <!-- INSTAGRAM CTA -->
-    <div class="instagram-cta">
+    <div class="ig-banner">
       <h2>Follow Us on Instagram</h2>
       <p>Stay up to date with events, opportunities, and chapter news.</p>
-      <a href="https://www.instagram.com/UNCC_NSBE" target="_blank" class="btn-instagram">
-        @UNCC_NSBE
+      <a href="https://www.instagram.com/UNCC_NSBE" target="_blank" rel="noopener" class="btn btn-gold">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg> @UNCC_NSBE
       </a>
     </div>
 
@@ -255,13 +230,25 @@
 
   <!-- FOOTER -->
   <footer>
-    <p><strong>UNCC NSBE</strong> — UNC Charlotte Chapter</p>
-    <p class="mt-1">
-      <a href="https://www.instagram.com/UNCC_NSBE" target="_blank">@UNCC_NSBE</a>
-      &nbsp;|&nbsp;
-      <a href="mailto:unccnsbe.pres@gmail.com">unccnsbe.pres@gmail.com</a>
-    </p>
-    <p class="mt-1" style="font-size: 0.8rem; opacity: 0.6;">© 2025–2026 UNCC NSBE. All rights reserved.</p>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p class="footer-title">UNCC NSBE</p>
+        <p class="footer-tagline">Region II Collegiate Chapter</p>
+        <p class="footer-contact">
+          <a href="https://www.instagram.com/UNCC_NSBE" target="_blank" rel="noopener">@UNCC_NSBE</a>
+          <span aria-hidden="true">·</span>
+          <a href="mailto:unccnsbe.pres@gmail.com">unccnsbe.pres@gmail.com</a>
+        </p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="index.html">Home</a>
+        <a href="eboard.html">E-Board</a>
+        <a href="dues.html">Dues</a>
+        <a href="sponsorship.html">Sponsorship</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+    <p class="footer-copy">© 2025–2026 UNCC NSBE. All rights reserved.</p>
   </footer>
 
   <script>
