@@ -222,14 +222,17 @@ nav {
 
 /* --- Buttons --- */
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   padding: 0.65rem 1.4rem;
   border-radius: 8px;
   font-family: var(--font-heading);
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.2s ease;
   border: 2px solid transparent;
   letter-spacing: 0.3px;
 }
@@ -760,6 +763,115 @@ nav.footer-nav {
   text-align: center;
 }
 
+/* --- Events Page --- */
+.events-layout {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.events-calendar iframe {
+  display: block;
+  background: var(--white);
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(15, 31, 22, 0.06);
+}
+
+.calendar-note {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--gray);
+}
+
+.events-rsvp {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.events-intro {
+  color: var(--gray);
+  margin: -1rem 0 1.5rem;
+}
+
+.past-events-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.event-card {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+/* Editorial badges: date + lead */
+.event-date,
+.event-lead {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  background: rgba(0, 90, 45, 0.08);
+  color: #005A2D;
+  line-height: 1.3;
+}
+
+.event-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.event-attendance {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--gray);
+}
+
+.event-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.3;
+  margin-top: 0.25rem;
+}
+
+.event-desc {
+  font-size: 0.9rem;
+  color: var(--gray);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.event-card .btn { margin-top: 0.5rem; }
+.event-card:hover .arrow { transform: translateX(4px); }
+
+@media (max-width: 1024px) {
+  .past-events-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .events-layout,
+  .past-events-grid { grid-template-columns: 1fr; }
+  .events-calendar iframe { height: 500px; }
+}
+
 /* --- Chapter Forms Hub (contact, news) --- */
 .forms-hub-section { margin-top: 3rem; }
 
@@ -770,30 +882,31 @@ nav.footer-nav {
 }
 
 .forms-card {
-  background: var(--white);
-  border: 1px solid #E2E8F0;
-  border-radius: 12px;
-  padding: 1.5rem;
+  padding: 1.75rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.6rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.forms-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
-}
-
-.forms-card .icon-box { color: #046A38; }
-
+/* Flush header with a solid green accent dot */
 .forms-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
   font-family: var(--font-heading);
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--dark);
-  margin-top: 0.4rem;
+}
+
+.forms-card h3::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  flex-shrink: 0;
 }
 
 .forms-card p {
@@ -833,7 +946,8 @@ nav.footer-nav {
   transition: transform 0.3s ease;
 }
 
-a:hover > .arrow { transform: translateX(4px); }
+a:hover > .arrow,
+.btn:hover .arrow { transform: translateX(4px); }
 
 /* --- Safety caps ---
    Hard ceilings only: these stop an icon or hero image from ever rendering
@@ -879,7 +993,6 @@ svg, .card-icon, .feature-icon, .mission-card svg, .explore-card svg {
 /* --- Card Hover Elevation --- */
 /* Declared after .reveal so hover wins over .reveal.visible's transform */
 .card,
-.explore-card,
 .payment-card,
 .tier-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
@@ -887,13 +1000,11 @@ svg, .card-icon, .feature-icon, .mission-card svg, .explore-card svg {
 
 /* Cards that also scroll-reveal keep their opacity fade */
 .reveal.card,
-.reveal.explore-card,
 .reveal.tier-card {
   transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .card:hover,
-.explore-card:hover,
 .payment-card:hover,
 .tier-card:hover {
   transform: translateY(-6px);
@@ -903,6 +1014,34 @@ svg, .card-icon, .feature-icon, .mission-card svg, .explore-card svg {
 
 /* Keep the brand accent bar on payment cards */
 .payment-card:hover { border-top-color: var(--brand); }
+
+/* --- Editorial Cards ---
+   Explore (home), mission pillars (home), past events, and form cards share
+   one soft-shadow surface instead of hard borders. */
+.explore-card,
+.pillar,
+.event-card,
+.forms-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 14px;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.explore-card:hover,
+.pillar:hover,
+.event-card:hover,
+.forms-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px -4px rgba(0, 90, 45, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
+}
+
+/* Cards that also scroll-reveal keep their opacity fade */
+.reveal.explore-card,
+.reveal.pillar {
+  transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.25s ease;
+}
 
 /* --- Page Fade-In --- */
 @keyframes fadeInUp {
@@ -928,8 +1067,8 @@ svg, .card-icon, .feature-icon, .mission-card svg, .explore-card svg {
 }
 
 /* --- Mobile --- */
-/* Nav collapses earlier than the page layout: logos + 6 links need ~900px */
-@media (max-width: 900px) {
+/* Nav collapses earlier than the page layout: logos + 7 links need ~1024px */
+@media (max-width: 1024px) {
   nav { padding: 0 1rem; }
 
   .nav-links {

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Events — UNCC NSBE</title>
+  <link rel="stylesheet" href="./style.css?v=2.3">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="index.html" class="nav-brand" aria-label="UNCC NSBE home">
+      <img src="images/nsbe-logo.png" alt="NSBE logo">
+      <span class="nav-divider" aria-hidden="true"></span>
+      <img src="images/uncc-logo.png" alt="UNC Charlotte logo">
+      <span class="nav-title">UNCC NSBE</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="eboard.html">E-Board</a></li>
+      <li><a href="events.html" class="active">Events</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="dues.html">Dues</a></li>
+      <li><a href="sponsorship.html">Sponsorship</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header fade-in">
+    <h1>Events &amp; Activity Recaps</h1>
+    <p>Stay updated on upcoming UNCC NSBE meetings and explore recaps of our past events.</p>
+  </div>
+
+  <div class="container fade-in">
+
+    <!-- UPCOMING EVENTS -->
+    <h2 class="section-title">Upcoming Events</h2>
+    <div class="section-divider"></div>
+
+    <div class="events-layout">
+
+      <div class="events-calendar">
+        <iframe
+          src="https://calendar.google.com/calendar/embed?src=c_787992e0550377f5f213f4a6b45a8815489634f525907168257b8be42920523c%40group.calendar.google.com&amp;ctz=America%2FNew_York"
+          width="100%" height="600" frameborder="0" scrolling="no"
+          style="border: 0;"
+          title="UNCC NSBE events calendar"
+          loading="lazy"></iframe>
+        <p class="calendar-note">
+          Can't view calendar events? Make sure you are logged into Google or check event updates on Instagram
+          <a href="https://www.instagram.com/UNCC_NSBE" target="_blank" rel="noopener">@UNCC_NSBE</a>.
+        </p>
+      </div>
+
+      <div class="events-rsvp">
+        <div class="forms-card">
+          <!-- TODO: replace # with the current event RSVP Google Form link -->
+          <h3>RSVP for an Event</h3>
+          <p>Let us know you're coming so we can plan food, space, and materials.</p>
+          <a href="#" target="_blank" rel="noopener" class="btn btn-secondary">Open RSVP Form</a>
+        </div>
+
+        <div class="forms-card">
+          <h3>Get Event Reminders</h3>
+          <p>Join the chapter GroupMe or follow us on Instagram for meeting reminders and last-minute updates.</p>
+          <a href="contact.html" class="btn btn-secondary">Join the GroupMe</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PAST EVENTS -->
+    <h2 class="section-title mt-4">Past Events</h2>
+    <div class="section-divider"></div>
+    <p class="events-intro">October 2026 highlights. Full recaps are in our <a href="https://docs.google.com/document/d/1e-dGuep8pV2DW22R11xKLQ5rtgEw2Iiu/edit?usp=sharing" target="_blank" rel="noopener">October Activity Report</a>.</p>
+
+    <!--
+      TO ADD AN EVENT: copy one .event-card to the top of the grid and update the
+      date, attendance, title, lead, and summary. Recap buttons all open the
+      Activity Report Google Doc (keep it shared as "Anyone with the link").
+    -->
+    <div class="past-events-grid">
+
+      <article class="event-card">
+        <div class="event-top">
+          <span class="event-date">October 1, 2026</span>
+          <span class="event-attendance">23 attended</span>
+        </div>
+        <h3>NSBE x ASCE Music Bingo</h3>
+        <p class="event-lead"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Lead: Aaron Battle</p>
+        <p class="event-desc">A collaborative music bingo night in Mebane Hall with ASCE to strengthen cross-disciplinary engineering connections.</p>
+        <a href="https://docs.google.com/document/d/1e-dGuep8pV2DW22R11xKLQ5rtgEw2Iiu/edit?usp=sharing" target="_blank" rel="noopener" class="btn btn-secondary">View Recap <span class="arrow" aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="event-card">
+        <div class="event-top">
+          <span class="event-date">October 7, 2026</span>
+          <span class="event-attendance">59 attended</span>
+        </div>
+        <h3>NSBE Convention Interest Meeting</h3>
+        <p class="event-lead"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Leads: Rupert Lartey &amp; Olivia Parker-George</p>
+        <p class="event-desc">Chapter-wide briefing detailing logistics, registration timelines, and travel expectations for the NSBE National Convention.</p>
+        <a href="https://docs.google.com/document/d/1e-dGuep8pV2DW22R11xKLQ5rtgEw2Iiu/edit?usp=sharing" target="_blank" rel="noopener" class="btn btn-secondary">View Recap <span class="arrow" aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="event-card">
+        <div class="event-top">
+          <span class="event-date">October 15, 2026</span>
+          <span class="event-attendance">16 attended</span>
+        </div>
+        <h3>Social Capital Conversation with George Metz</h3>
+        <p class="event-lead"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Lead: Kanye McKeithen</p>
+        <p class="event-desc">Interactive session with mentor George Metz focusing on extending professional networks beyond campus.</p>
+        <a href="https://docs.google.com/document/d/1e-dGuep8pV2DW22R11xKLQ5rtgEw2Iiu/edit?usp=sharing" target="_blank" rel="noopener" class="btn btn-secondary">View Recap <span class="arrow" aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="event-card">
+        <div class="event-top">
+          <span class="event-date">October 17, 2026</span>
+          <span class="event-attendance">18 attended</span>
+        </div>
+        <h3>Volunteering Table at Engineering &amp; Computer Science Open House</h3>
+        <p class="event-lead"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Leads: Rapheal Badawi &amp; Abdul-Rahman Dauda</p>
+        <p class="event-desc">Tabling at the CCI Open House to introduce prospective STEM students to NSBE mission and membership benefits.</p>
+        <a href="https://docs.google.com/document/d/1e-dGuep8pV2DW22R11xKLQ5rtgEw2Iiu/edit?usp=sharing" target="_blank" rel="noopener" class="btn btn-secondary">View Recap <span class="arrow" aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="event-card">
+        <div class="event-top">
+          <span class="event-date">October 19, 2026</span>
+          <span class="event-attendance">24 attended</span>
+        </div>
+        <h3>NSBE Mentorship Kickoff Event</h3>
+        <p class="event-lead"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Leads: Rapheal Badawi &amp; Abdul-Rahman Dauda</p>
+        <p class="event-desc">Official launch of the mentorship program, formalizing mentor-mentee pairings and establishing annual growth goals.</p>
+        <a href="https://docs.google.com/document/d/1e-dGuep8pV2DW22R11xKLQ5rtgEw2Iiu/edit?usp=sharing" target="_blank" rel="noopener" class="btn btn-secondary">View Recap <span class="arrow" aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="event-card">
+        <div class="event-top">
+          <span class="event-date">October 20, 2026</span>
+          <span class="event-attendance">50 attended</span>
+        </div>
+        <h3>LinkedIn &amp; Resume Workshop with Charlotte NSBE Professionals</h3>
+        <p class="event-lead"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Lead: Kanye McKeithen</p>
+        <p class="event-desc">High-impact professional development workshop with alumni chapter professionals providing 1-on-1 resume reviews and LinkedIn optimizations.</p>
+        <a href="https://docs.google.com/document/d/1e-dGuep8pV2DW22R11xKLQ5rtgEw2Iiu/edit?usp=sharing" target="_blank" rel="noopener" class="btn btn-secondary">View Recap <span class="arrow" aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="event-card">
+        <div class="event-top">
+          <span class="event-date">October 21, 2026</span>
+          <span class="event-attendance">20 attended</span>
+        </div>
+        <h3>Bank of America Site Visit</h3>
+        <p class="event-lead"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Lead: Jesse Igbide</p>
+        <p class="event-desc">Industry tour of Bank of America’s cybersecurity facility co-hosted with Girls Who Code, exploring corporate security roles and architecture.</p>
+        <a href="https://docs.google.com/document/d/1e-dGuep8pV2DW22R11xKLQ5rtgEw2Iiu/edit?usp=sharing" target="_blank" rel="noopener" class="btn btn-secondary">View Recap <span class="arrow" aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="event-card">
+        <div class="event-top">
+          <span class="event-date">October 23, 2026</span>
+          <span class="event-attendance">24 attended</span>
+        </div>
+        <h3>Elementary School Volunteer Event with GEP</h3>
+        <p class="event-lead"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Lead: To Be Assigned</p>
+        <p class="event-desc">Outreach event 15 minutes off-campus teaching elementary youth hands-on engineering principles and building techniques.</p>
+        <a href="https://docs.google.com/document/d/1e-dGuep8pV2DW22R11xKLQ5rtgEw2Iiu/edit?usp=sharing" target="_blank" rel="noopener" class="btn btn-secondary">View Recap <span class="arrow" aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="event-card">
+        <div class="event-top">
+          <span class="event-date">October 26, 2026</span>
+          <span class="event-attendance">40 attended</span>
+        </div>
+        <h3>Pie An E-Board Member in the Face</h3>
+        <p class="event-lead"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Lead: Olivia Parker-George</p>
+        <p class="event-desc">Campus-wide fundraiser at Star Quad where students paid to pie e-board members to raise chapter operating funds.</p>
+        <a href="https://docs.google.com/document/d/1e-dGuep8pV2DW22R11xKLQ5rtgEw2Iiu/edit?usp=sharing" target="_blank" rel="noopener" class="btn btn-secondary">View Recap <span class="arrow" aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="event-card">
+        <div class="event-top">
+          <span class="event-date">October 29, 2026</span>
+          <span class="event-attendance">25 attended</span>
+        </div>
+        <h3>General Body Meeting with Nucor</h3>
+        <p class="event-lead"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Lead: Kanye McKeithen</p>
+        <p class="event-desc">Corporate meeting in Fretwell 116 featuring Nucor engineers presenting on steel manufacturing operations, careers, and recruiting.</p>
+        <a href="https://docs.google.com/document/d/1e-dGuep8pV2DW22R11xKLQ5rtgEw2Iiu/edit?usp=sharing" target="_blank" rel="noopener" class="btn btn-secondary">View Recap <span class="arrow" aria-hidden="true">→</span></a>
+      </article>
+
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p class="footer-title">UNCC NSBE</p>
+        <p class="footer-tagline">Region II Collegiate Chapter</p>
+        <p class="footer-contact">
+          <a href="https://www.instagram.com/UNCC_NSBE" target="_blank" rel="noopener">@UNCC_NSBE</a>
+          <span aria-hidden="true">·</span>
+          <a href="mailto:unccnsbe.pres@gmail.com">unccnsbe.pres@gmail.com</a>
+        </p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="index.html">Home</a>
+        <a href="eboard.html">E-Board</a>
+        <a href="events.html">Events</a>
+        <a href="dues.html">Dues</a>
+        <a href="sponsorship.html">Sponsorship</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+    <p class="footer-copy">© 2025–2026 UNCC NSBE. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const links  = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+  </script>
+
+</body>
+</html>

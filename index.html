@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>UNCC NSBE</title>
-  <link rel="stylesheet" href="./style.css?v=2.0">
+  <link rel="stylesheet" href="./style.css?v=2.3">
   <style>
 
     /* ── HERO ── */
@@ -208,10 +208,7 @@
     }
 
     .pillar {
-      background: var(--off-white);
-      border-radius: 12px;
       padding: 1.75rem;
-      border: 1px solid #E2E8F0;
     }
 
     .pillar h3 {
@@ -254,23 +251,12 @@
       gap: 1.5rem;
     }
 
+    /* Surface, shadow, and hover come from the shared editorial card style */
     .explore-card {
-      background: var(--white);
-      border-radius: 12px;
       padding: 2rem;
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
-      border: 1px solid #E2E8F0;
-      border-top: 3px solid var(--green);
-      box-shadow: 0 1px 3px rgba(15, 31, 22, 0.04);
-    }
-
-    /* Overrides the site-wide card hover: keep the subtle frame, swap the accent to gold */
-    .explore-card:hover {
-      transform: translateY(-4px);
-      border-color: #E2E8F0;
-      border-top-color: var(--gold);
     }
 
     .explore-card h3 {
@@ -408,6 +394,7 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="eboard.html">E-Board</a></li>
+      <li><a href="events.html">Events</a></li>
       <li><a href="news.html">News</a></li>
       <li><a href="dues.html">Dues</a></li>
       <li><a href="sponsorship.html">Sponsorship</a></li>
@@ -586,6 +573,7 @@
       <nav class="footer-nav" aria-label="Footer">
         <a href="index.html">Home</a>
         <a href="eboard.html">E-Board</a>
+        <a href="events.html">Events</a>
         <a href="dues.html">Dues</a>
         <a href="sponsorship.html">Sponsorship</a>
         <a href="contact.html">Contact</a>
